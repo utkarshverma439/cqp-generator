@@ -111,7 +111,7 @@ if __name__ == "__main__":
 if FRONTEND_DIR.exists():
     app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIR / "assets")), name="assets")
 
-    @app.get("/{full_path:path}")
+    @app.get("/{full_path:path}", include_in_schema=False)
     async def serve_spa(full_path: str):
         file_path = FRONTEND_DIR / full_path
         if file_path.exists() and file_path.is_file():
